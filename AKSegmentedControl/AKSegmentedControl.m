@@ -190,6 +190,32 @@ const CGFloat kAKButtonSeparatorWidth = 1.0;
 - (void)setSelectedIndex:(NSUInteger)index {
     _selectedIndexes = [NSIndexSet indexSetWithIndex:index];
     [self updateButtons];
+    
+    if (self.hideSideSeparator) {
+        int separatorsArrayCount = [separatorsArray count];
+        
+        for (int i=0; i < separatorsArrayCount; i++) {
+            UIImageView *separatorImageView = separatorsArray[i];
+            
+            BOOL hidden = NO;
+            
+            if (index == 0) {
+                if (i == 0) {
+                    hidden = YES;
+                }
+            } else if (index == separatorsArrayCount) {
+                if (i == separatorsArrayCount-1) {
+                    hidden = YES;
+                }
+            } else {
+                if (i == index-1 || i == index) {
+                    hidden = YES;
+                }
+            }
+            
+            [separatorImageView setHidden:hidden];
+        }
+    }
 }
 
 - (void)setSelectedIndexes:(NSIndexSet *)indexSet byExpandingSelection:(BOOL)expandSelection {
