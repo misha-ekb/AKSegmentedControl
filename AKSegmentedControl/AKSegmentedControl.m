@@ -124,7 +124,10 @@ const CGFloat kAKButtonSeparatorWidth = 1.0;
         return;
     }
     
-    NSUInteger selectedIndex = button.tag;
+    //NSUInteger selectedIndex = button.tag;
+    NSUInteger selectedIndex = [self.buttonsArray indexOfObjectPassingTest:^BOOL (id obj, NSUInteger idx, BOOL *stop) {
+        return obj == button;
+    }];
     
     NSIndexSet *set = _selectedIndexes;
     
@@ -170,7 +173,7 @@ const CGFloat kAKButtonSeparatorWidth = 1.0;
     [_buttonsArray enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [self addSubview:(UIButton *)obj];
         [(UIButton *)obj addTarget:self action:@selector(segmentButtonPressed:) forControlEvents:UIControlEventTouchDown];
-        [(UIButton *)obj setTag:idx];
+        //[(UIButton *)obj setTag:idx];
     }];
     
     [self rebuildSeparators];
