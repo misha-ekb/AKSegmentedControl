@@ -88,7 +88,13 @@ const CGFloat kAKButtonSeparatorWidth = 1.0;
     NSUInteger increment = 0;
     
     for (UIButton *button in _buttonsArray) {
-        dButtonWidth = buttonSize.width;
+        if (self.additionalWidthToButton) {
+            [button sizeToFit];
+            CGRect r = button.frame;
+            dButtonWidth = r.size.width + 60;
+        } else {
+            dButtonWidth = buttonSize.width;
+        }
         
         if (spaceLeft != 0) {
             dButtonWidth++;
@@ -98,6 +104,7 @@ const CGFloat kAKButtonSeparatorWidth = 1.0;
         if (increment != 0) offsetX += separatorWidth;
         
         [button setFrame:CGRectMake(offsetX, offsetY, dButtonWidth, buttonSize.height)];
+        //[button setFrame:CGRectMake(offsetX, offsetY, button.frame.size.width, buttonSize.height)];
         
         if (increment < separtorsNumber) {
             UIImageView *separatorImageView = separatorsArray[increment];
