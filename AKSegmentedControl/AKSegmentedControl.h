@@ -38,6 +38,7 @@ typedef NS_ENUM(NSUInteger, AKSegmentedControlMode) {
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInsets;
 @property (nonatomic, assign) AKSegmentedControlMode segmentedControlMode;
 @property (nonatomic, assign) BOOL hideSideSeparator;
+@property (nonatomic, assign) float additionalWidthToButton;
 
 // Manually set the selected index
 - (void)setSelectedIndex:(NSUInteger)index;
