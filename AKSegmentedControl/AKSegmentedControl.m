@@ -91,7 +91,7 @@ const CGFloat kAKButtonSeparatorWidth = 1.0;
         if (self.additionalWidthToButton) {
             [button sizeToFit];
             CGRect r = button.frame;
-            dButtonWidth = r.size.width + 60;
+            dButtonWidth = r.size.width + self.additionalWidthToButton;
         } else {
             dButtonWidth = buttonSize.width;
         }
